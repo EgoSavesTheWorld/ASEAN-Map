@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <!-- ဒါက favicon  -->
+  <link rel="shortcut icon" href="../favicons/map.png" type="image/x-icon">
+  <title>ASEAN</title>
+  <style>
+
+    /* ဒါက bounceing animation ရယ် Window Screen Sizeသေးသွားရင် iconsပျောက်သွားတာကိုလုပ်ပေးတဲ့ classတွေပါ 🥱 */
+    .country-location {
+      opacity: 0;
+    }
+
+    .bounce {
+      transition: transform 1.5s;
+      cursor: pointer;
+    }
+
+    .bounce:hover {
+      animation: bounce 1.5s;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      20% {
+        transform: translateY(-30px);
+      }
+
+      40% {
+        transform: translateY(-15px);
+      }
+
+      60% {
+        transform: translateY(-30px);
+      }
+
+      80% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .bounceHorizontal {
+      transition: transform 2s;
+    }
+
+    .bounceHorizontal:hover {
+      cursor: pointer;
+      animation: bounceHorizontal 2s;
+    }
+
+    @keyframes bounceHorizontal {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(30px);
+      }
+
+      40% {
+        transform: translateX(15px);
+      }
+
+      60% {
+        transform: translateX(30px);
+      }
+
+      80% {
+        transform: translateX(15px);
+      }
+    }
+  </style>
+</head>
+
+<body class="pb-[1000px]">
+
+    <div class="nav"></div>
+    <div class="m-20"></div>
+    <div class="country mx-10 my-10 relative tagline border-4 border-blue-900 bg-blue-50 shadow-2xl">
+      <!-- ဒါကမြေပုံ -->
+
+      <img class="mx-5 w-[80%] h-[80%]" src="../images/map.png" alt="">
+      <!-- ဒါက hover တင်လိုက်ရင် ခုံဆွခုံဆွ ဖြစ်နေတဲ့ iconsတွေ -->
+
+      <div class="map-icon">
+        <img class="country-icon bounce w-[50px] absolute left-[60px] top-[50px]" src="../images/myanmar.png"
+        alt="Myanmar" title="Myanmar">
+      <img class="country-icon bounce w-[50px] absolute left-[170px] top-[150px]" src="../images/cambodia.png"
+        alt="Cambodia" title="Cambodia">
+      <img class="country-icon bounce w-[50px] absolute left-[120px] top-[120px]" src="../images/thailand.png"
+        alt="Thailand" title="Thailand">
+      <img class="country-icon bounce w-[52px] absolute left-[140px] top-[55px]" src="../images/laos.png" alt="Laos"
+        title="Laos">
+      <img class="country-icon bounceHorizontal  w-[78px] absolute left-[190px] top-[70px]" src="../images/vietnam.png"
+        alt="Vietnam" title="Vietnam">
+      </button>
+      <img class="country-icon bounce w-[50px] absolute left-[150px] top-[280px]" src="../images/singapore.png"
+        alt="Singapore" title="singapore">
+      </button>
+      <img class="country-icon w-[50px] bounce absolute left-[200px] top-[380px]" src="../images/indonesia.png"
+        alt="Indonesia" title="Indonesia">
+      <img class="country-icon w-[50px] bounce absolute left-[355px] top-[90px]" src="../images/philipines.png"
+        alt="Philipines" title="Philipines">
+        <img class="country-icon w-[50px] bounce absolute left-[295px] top-[235px]" src="../images/brunei.png"
+        alt="Brunei" title="Brunei">
+        <img class="country-icon w-[50px] bounce absolute left-[250px] top-[295px]" src="../images/malaysia.png"
+        alt="Malaysia" title="Malaysia">
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../node_modules/scrollreveal/dist/scrollreveal.min.js"></script>
+<script>
+
+  // HanMin ရေးထားတဲ့ JavaScript codes တွေကိုလိုက်မကြည့်နဲ့ရူးသွားမယ်...🥹
+  // စတာစတာ... xd🤭
+
+  ScrollReveal(
+    {
+      origin: 'bottom',
+      distance: '300px',
+      duration: 1000,
+    }).reveal('.tagline');
+  let countries = document.querySelectorAll('.country-icon');
+  let country = document.querySelectorAll('.country');
+
+  function updateCountryClasses() {
+    if (window.innerWidth < 1200) {
+      countries.forEach(function (country) {
+        country.classList.add('country-location');
+      });
+      document.querySelectorAll('.bounce, .bounceHorizontal').forEach(function (element) {
+        element.style.cursor = 'auto'; // Remove pointer cursor
+      });
+    } else {
+      countries.forEach(function (country) {
+        country.classList.remove('country-location');
+      });
+      document.querySelectorAll('.bounce, .bounceHorizontal').forEach(function (element) {
+        element.style.cursor = 'pointer'; // Restore pointer cursor
+      });
+    }
+  }
+
+  // Initial check
+  updateCountryClasses();
+
+  // Update on window resize
+  window.addEventListener('resize', updateCountryClasses);
+</script>
+
+</html>
